@@ -1,4 +1,4 @@
-package org.example.patterns.factory_method;
+package org.example.patterns.factory_method.solution;
 
 class NotificadorEmail extends Notificador {
     @Override

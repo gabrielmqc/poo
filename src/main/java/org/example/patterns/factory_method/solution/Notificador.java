@@ -1,4 +1,4 @@
-package org.example.patterns.factory_method;
+package org.example.patterns.factory_method.solution;
 
 public abstract class Notificador {
     protected abstract Notificacao criarNotificacao();
