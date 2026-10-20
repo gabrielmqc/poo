@@ -1,6 +1,6 @@
 package org.example.funcionarios;
 
-public class Gerente extends Funcionario {
+public class Gerente extends Funcionario implements Apresentavel {
     public Gerente(String nome, double salarioBase) {
         super(nome, salarioBase);
     }

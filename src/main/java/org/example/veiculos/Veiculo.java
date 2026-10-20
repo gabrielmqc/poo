@@ -34,24 +34,4 @@ public class Veiculo {
     public boolean isDisponivel() {
         return disponivel;
     }
-
-    public void alugar() {
-        if (disponivel) {
-            disponivel = false;
-        } else {
-            System.out.println("Veículo indisponível.");
-        }
-    }
-
-    public void devolver() {
-        disponivel = true;
-    }
-
-    public void exibirDados() {
-        System.out.println("Placa: " + placa);
-        System.out.println("Modelo: " + modelo);
-        System.out.println("Marca: " + marca);
-        System.out.println("Ano: " + ano);
-        System.out.println("Disponível: " + (disponivel ? "Sim" : "Não"));
-    }
 }

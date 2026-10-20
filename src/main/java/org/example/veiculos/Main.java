@@ -1,30 +1,24 @@
 package org.example.veiculos;
 
+import java.util.*;
+
+
 public class Main {
     public static void main(String[] args) {
-        Veiculo v1 = new Veiculo("ABC-1234", "Uno", "Fiat", 2020);
-        Cliente c1 = new Cliente("João Silva", "123.456.789-00", "987654321");
+        Map<Integer,String> hash=new HashMap<Integer,String>();
+        Map<Integer,String> linked=new LinkedHashMap<Integer,String>();
+        Map<Integer,String> tree=new TreeMap<Integer,String>();
 
-        Locacao locacao = new Locacao(c1, v1, "05/08/2026", "10/08/2026");
+        int[] chaves={100,3,47,16};
+        String[] frutas={"Mango","Apple","Banana","Grapes"};
+        for(int i=0;i<chaves.length;i++){
+            hash.put(chaves[i],frutas[i]);
+            linked.put(chaves[i],frutas[i]);
+            tree.put(chaves[i],frutas[i]);
+        }
 
-        System.out.println("Dados do veículo antes da locação:");
-        v1.exibirDados();
-
-        System.out.println();
-        locacao.iniciar();
-
-        System.out.println();
-        locacao.exibirResumo();
-
-        System.out.println();
-        System.out.println("Dados do veículo após iniciar locação:");
-        v1.exibirDados();
-
-        System.out.println();
-        locacao.encerrar();
-
-        System.out.println();
-        System.out.println("Dados do veículo após encerramento:");
-        v1.exibirDados();
+        System.out.println("HashMap:       "+hash);
+        System.out.println("LinkedHashMap: "+linked);
+        System.out.println("TreeMap:       "+tree);
     }
 }

@@ -1,6 +1,6 @@
 package org.example.funcionarios;
 
-public abstract class Funcionario implements Apresentavel{
+public abstract class Funcionario{
 
     protected String nome;
     protected double salarioBase;
