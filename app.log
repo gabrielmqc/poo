@@ -1,0 +1,6 @@
+16:12:26 DEBUG [PedidoService] Validando itens do pedido
+16:12:26 INFO [PedidoService] Pedido criado
+16:12:26 DEBUG [ClienteService] Validando CPF do cliente
+16:12:26 INFO [ClienteService] Cliente cadastrado
+16:12:26 DEBUG [PagamentoService] Consultando gateway de pagamento
+16:12:26 INFO [PagamentoService] Pagamento aprovado
