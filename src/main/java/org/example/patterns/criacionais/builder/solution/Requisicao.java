@@ -1,8 +1,8 @@
 package org.example.patterns.criacionais.builder.solution;
 
-import java.util.HashMap;
 import java.util.Map;
 
+// PRODUCT: objeto complexo final
 public class Requisicao {
     private final String url;
     private final String metodo;
@@ -11,49 +11,38 @@ public class Requisicao {
     private final int timeout;
     private final int tentativas;
     private final String token;
+    private final boolean seguirRedirect;
+    private final boolean verificarSsl;
 
-    // Construtor privado: só o Builder cria
-    private Requisicao(Builder b) {
-        this.url = b.url;
-        this.metodo = b.metodo;
-        this.headers = b.headers;
-        this.corpo = b.corpo;
-        this.timeout = b.timeout;
-        this.tentativas = b.tentativas;
-        this.token = b.token;
+    Requisicao(
+            String url,
+            String metodo,
+            Map<String, String> headers,
+            String corpo,
+            int timeout,
+            int tentativas,
+            String token,
+            boolean seguirRedirect,
+            boolean verificarSsl) {
+
+        this.url = url;
+        this.metodo = metodo;
+        this.headers = Map.copyOf(headers);
+        this.corpo = corpo;
+        this.timeout = timeout;
+        this.tentativas = tentativas;
+        this.token = token;
+        this.seguirRedirect = seguirRedirect;
+        this.verificarSsl = verificarSsl;
     }
 
     @Override
     public String toString() {
-        return metodo + " " + url + " (timeout=" + timeout + ", tentativas=" + tentativas
-                + ", headers=" + headers + ", corpo=" + corpo + ")";
-    }
-
-    // BUILDER
-    public static class Builder {
-        private final String url;                      // obrigatório
-        private String metodo = "GET";
-        private final Map<String, String> headers = new HashMap<>();
-        private String corpo;
-        private int timeout = 30;
-        private int tentativas = 0;
-        private String token;
-
-        Builder(String url) { this.url = url; }
-
-        Builder metodo(String m)         { this.metodo = m; return this; }
-        Builder header(String k, String v) { this.headers.put(k, v); return this; }
-        Builder corpo(String c)          { this.corpo = c; return this; }
-        Builder timeout(int segundos)    { this.timeout = segundos; return this; }
-        Builder tentativas(int n)        { this.tentativas = n; return this; }
-        Builder token(String t)          { this.token = t; return this; }
-
-        public Requisicao build() {
-            // Validação das regras entre campos
-            if (metodo.equals("GET") && corpo != null) {
-                throw new IllegalStateException("GET não deve ter corpo");
-            }
-            return new Requisicao(this);
-        }
+        return metodo + " " + url
+                + " (timeout=" + timeout
+                + ", tentativas=" + tentativas
+                + ", ssl=" + verificarSsl
+                + ", redirect=" + seguirRedirect
+                + ", headers=" + headers + ")";
     }
 }

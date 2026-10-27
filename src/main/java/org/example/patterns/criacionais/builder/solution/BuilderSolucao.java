@@ -2,25 +2,25 @@ package org.example.patterns.criacionais.builder.solution;
 
 public class BuilderSolucao {
     public static void main(String[] args) {
-        // Legível: só define o que importa
-        Requisicao r1 = new Requisicao.Builder("https://api.loja.com/pedidos")
-                .metodo("POST")
-                .header("Content-Type", "application/json")
-                .corpo("{\"id\": 1}")
-                .timeout(10)
-                .tentativas(3)
-                .token("abc123")
-                .build();
+        RequisicaoDirector director = new RequisicaoDirector();
 
-        // Tudo no padrão
-        Requisicao r2 = new Requisicao.Builder("https://interno.loja.com").build();
+        // Construção usando uma receita do Director
+        RequisicaoBuilder builder1 = new RequisicaoBuilder();
+        director.construirPostJson(
+                builder1,
+                "https://api.loja.com/pedidos",
+                "{\"id\": 1}"
+        );
+        builder1.definirToken("abc123");
+        Requisicao r1 = builder1.build();
 
-        // Usando o Director
-        Requisicao r3 = RequisicaoDirector.postJson(
-                "https://api.loja.com/clientes", "{\"nome\": \"Ana\"}", "abc123");
+        // Construção personalizada, sem usar o Director
+        RequisicaoBuilder builder2 = new RequisicaoBuilder();
+        builder2.definirUrl("https://interno.loja.com");
+        builder2.verificarSsl(false);
+        Requisicao r2 = builder2.build();
 
         System.out.println(r1);
         System.out.println(r2);
-        System.out.println(r3);
     }
 }
