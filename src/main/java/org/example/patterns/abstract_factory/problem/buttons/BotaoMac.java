@@ -1,9 +1,0 @@
-package org.example.patterns.abstract_factory.problem.buttons;
-
-import org.example.patterns.abstract_factory.problem.produtos.Componente;
-
-public class BotaoMac implements Componente {
-    private final String texto;
-    public BotaoMac(String texto) { this.texto = texto; }
-    public void desenhar() { System.out.println("[Mac] Botão '" + texto + "'"); }
-}
